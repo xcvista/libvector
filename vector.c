@@ -155,7 +155,7 @@ bool vector_insert(vector_t vec, const void *object, size_t index)
     if (index == vec -> count)
         return vector_append(vec, object);
     
-    if (vec -> count <= vec -> alloc_size / vec -> element_size)
+    if (vec -> count >= vec -> alloc_size / vec -> element_size)
         if (!vector_expand(vec, vec -> count + 1)) // Out of room. Expand it.
             return false;
     
@@ -175,7 +175,7 @@ bool vector_append(vector_t vec, const void * object)
     assert(vec);
     assert(object);
     
-    if (vec -> count <= vec -> alloc_size / vec -> element_size)
+    if (vec -> count >= vec -> alloc_size / vec -> element_size)
         if (!vector_expand(vec, vec -> count + 1)) // Out of room. Expand it.
             return false;
     
